@@ -42,13 +42,12 @@ export default {
           `https://api.unsplash.com/collections/${this.collections[index].id}/photos?client_id=d8088d5229a11ad079d7db3f733cf38d4ea221d037ff95a09371e311304de25a&per_page=50`
         )
         .then(response => {
-          console.log(response.data);
-
           let images = [];
 
           response.data.forEach(element => {
             images.push(
-              `${element.urls.raw}&w=360&h=500&fit=crop&crop=focalpoint&q=80`
+              `${element.urls.raw}&w=${screen.width}&h=${(screen.height * 7) /
+                10}&fit=crop&crop=focalpoint&q=80`
             );
           });
 

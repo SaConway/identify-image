@@ -17,9 +17,7 @@
       </div>
     </div>
 
-    <div v-if="index === images.length" class="result">
-      {{ rightAnswers }} / {{ images.length }}
-    </div>
+    <div v-if="index === images.length" class="result">{{ rightAnswers }} / {{ images.length }}</div>
   </div>
 </template>
 
@@ -89,7 +87,7 @@ button:focus {
 
 img {
   width: 100vw;
-  max-height: 60vh;
+  max-height: 70vh;
 }
 
 .result {
