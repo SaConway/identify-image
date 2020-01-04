@@ -1,16 +1,15 @@
 <template>
   <div class="home">
     <div class="collections">
-      <router-link
-        :to="{ name: 'game', params: { images } }"
+      <button
+        v-for="(collection, index) in collections"
+        :key="collection.id"
+        @click="onStartGame(index)"
         class="collection"
       >
-        <img
-          class="collection-img"
-          src="https://images.unsplash.com/photo-1492534513006-37715f336a39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80"
-        />
-        <h3 class="collection-title">ANIMALS</h3>
-      </router-link>
+        <img class="collection-img" :src="collection.image" />
+        <h3 class="collection-title">{{ collection.title }}</h3>
+      </button>
     </div>
   </div>
 </template>
@@ -21,30 +20,54 @@ export default {
   components: {},
   data: function() {
     return {
-      images: []
+      collections: [
+        {
+          id: "9321487",
+          image: `https://images.unsplash.com/photo-1492534513006-37715f336a39?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=${screen.width}&fit=max&ixid=eyJhcHBfaWQiOjEwOTExNH0`,
+          title: "ANIMALS"
+        },
+        {
+          id: "9325919",
+          image: `https://images.unsplash.com/photo-1543528176-61b239494933?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=${screen.width}&fit=max&ixid=eyJhcHBfaWQiOjEwOTExNH0`,
+          title: "FOOD"
+        }
+      ]
     };
   },
-  mounted() {
-    this.$http
-      .get(
-        "https://api.unsplash.com/collections/9321487/photos?client_id=d8088d5229a11ad079d7db3f733cf38d4ea221d037ff95a09371e311304de25a&per_page=50"
-      )
-      .then(response => {
-        console.log(response.data);
-        console.log(screen.width);
+  mounted() {},
+  methods: {
+    onStartGame(index) {
+      this.$http
+        .get(
+          `https://api.unsplash.com/collections/${this.collections[index].id}/photos?client_id=d8088d5229a11ad079d7db3f733cf38d4ea221d037ff95a09371e311304de25a&per_page=50`
+        )
+        .then(response => {
+          console.log(response.data);
 
-        response.data.forEach(element => {
-          this.images.push(`${element.urls.raw}?w=${screen.width}&h=500&q=80`);
+          let images = [];
+
+          response.data.forEach(element => {
+            images.push(
+              `${element.urls.raw}&w=360&h=500&fit=crop&crop=focalpoint&q=80`
+            );
+          });
+
+          this.$router.push({ name: "game", params: { images } });
         });
-      });
+    }
   }
 };
 </script>
 
 <style scoped>
+.collections {
+  max-width: 100vw;
+}
+
 .collection {
   position: relative;
-  display: block;
+  background: transparent;
+  border: none;
 }
 
 .collection-img {
