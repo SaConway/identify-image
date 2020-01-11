@@ -30,6 +30,11 @@ export default {
           id: "9325919",
           image: `https://images.unsplash.com/photo-1543528176-61b239494933?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=${screen.width}&fit=max&ixid=eyJhcHBfaWQiOjEwOTExNH0`,
           title: "FOOD"
+        },
+        {
+          id: "9359868",
+          image: `https://images.unsplash.com/photo-1564379976409-79bd0786fff1?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=${screen.width}&fit=max&ixid=eyJhcHBfaWQiOjEwOTExNH0`,
+          title: "CLOTHES"
         }
       ]
     };

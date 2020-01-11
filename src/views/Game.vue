@@ -9,10 +9,10 @@
 
       <div v-if="index !== images.length" class="buttons">
         <button @click="onAnswer(false)">
-          <font-awesome-icon icon="times-circle" class="wrong" />
+          <font-awesome-icon icon="thumbs-down" class="wrong" />
         </button>
         <button @click="onAnswer(true)">
-          <font-awesome-icon icon="check-circle" class="right" />
+          <font-awesome-icon icon="thumbs-up" class="right" />
         </button>
       </div>
     </div>
@@ -57,6 +57,19 @@ export default {
   justify-content: space-evenly;
 }
 
+.buttons button {
+  width: 50vw;
+  font-size: 2rem;
+}
+
+.buttons button:nth-of-type(1) {
+  background: #dc3545;
+}
+
+.buttons button:nth-of-type(2) {
+  background: #28a745;
+}
+
 button {
   background: transparent;
   border: none;
@@ -74,11 +87,11 @@ button:focus {
 }
 
 .right {
-  color: #28a745;
+  color: #fff;
 }
 
 .wrong {
-  color: #dc3545;
+  color: #fff;
 }
 
 .back {
