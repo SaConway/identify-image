@@ -1,3 +1,6 @@
 module.exports = {
-  publicPath: "https://saconway.github.io/identify-image"
+  publicPath:
+    process.env.NODE_ENV === "production"
+      ? "https://saconway.github.io/identify-image"
+      : "/"
 };
